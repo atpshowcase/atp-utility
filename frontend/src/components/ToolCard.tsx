@@ -8,15 +8,24 @@ interface ToolCardProps {
   icon: LucideIcon
   href: string
   className?: string
+  iconColor?: string
+  iconBg?: string
 }
 
-export default function ToolCard({ title, description, icon: Icon, href, className }: ToolCardProps) {
+export default function ToolCard({ 
+  title, 
+  description, 
+  icon: Icon, 
+  href, 
+  className,
+  iconColor = "text-primary",
+  iconBg = "bg-primary/10"
+}: ToolCardProps) {
   return (
     <Link href={href} className={cn("group block", className)}>
-      <div className="relative h-full overflow-hidden rounded-2xl border border-border/50 bg-card/40 p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/20 hover:border-primary/50 hover:bg-card/80">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+      <div className="relative h-full overflow-hidden rounded-2xl border border-border bg-white p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
         <div className="relative z-10 flex flex-col gap-4">
-          <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary transition-transform duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-white">
+          <div className={cn("inline-flex h-12 w-12 items-center justify-center rounded-lg transition-transform duration-300 group-hover:scale-110", iconBg, iconColor)}>
             <Icon className="h-6 w-6" />
           </div>
           <div>

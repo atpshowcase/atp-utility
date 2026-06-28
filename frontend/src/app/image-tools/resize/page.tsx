@@ -111,16 +111,16 @@ export default function ResizeImagePage() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         
         {/* Left Column: Upload & Preview */}
-        <div className="bg-card border border-border rounded-2xl p-6 shadow-xl backdrop-blur-sm relative overflow-hidden flex flex-col h-full min-h-[400px]">
+        <div className="bg-white border border-border rounded-2xl p-6 shadow-sm relative overflow-hidden flex flex-col h-full min-h-[400px]">
           {!previewUrl ? (
             <div 
-              className="flex-1 flex flex-col items-center justify-center border-2 border-dashed border-border rounded-xl cursor-pointer hover:bg-white/5 hover:border-primary/50 transition-all group"
+              className="flex-1 flex flex-col items-center justify-center border-2 border-dashed border-gray-300 bg-gray-50 rounded-xl cursor-pointer hover:bg-gray-100 hover:border-primary/50 transition-all group"
               onClick={triggerFileInput}
             >
-              <div className="bg-primary/20 p-4 rounded-full mb-4 group-hover:scale-110 transition-transform">
+              <div className="bg-primary/10 p-4 rounded-full mb-4 group-hover:scale-110 transition-transform">
                 <UploadCloud className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Click or drag image here</h3>
+              <h3 className="text-lg font-semibold mb-2 text-gray-900">Click or drag image here</h3>
               <p className="text-muted text-sm text-center max-w-[250px]">
                 Supports JPG, PNG, WEBP, and more.
               </p>
@@ -128,7 +128,7 @@ export default function ResizeImagePage() {
           ) : (
             <div className="flex-1 flex flex-col h-full">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="font-semibold flex items-center gap-2">
+                <h3 className="font-semibold flex items-center gap-2 text-gray-900">
                   <ImageIcon className="w-5 h-5 text-primary" />
                   Image Preview
                 </h3>
@@ -138,12 +138,12 @@ export default function ResizeImagePage() {
                     setPreviewUrl(null);
                     setResizedDataUrl(null);
                   }}
-                  className="text-xs text-muted hover:text-white transition-colors bg-white/5 px-3 py-1.5 rounded-full"
+                  className="text-xs text-muted hover:text-gray-900 transition-colors bg-gray-100 border border-gray-200 px-3 py-1.5 rounded-full"
                 >
                   Change Image
                 </button>
               </div>
-              <div className="flex-1 bg-black/20 rounded-xl flex items-center justify-center p-4 border border-border/50 overflow-hidden relative">
+              <div className="flex-1 bg-gray-100 rounded-xl flex items-center justify-center p-4 border border-gray-200 overflow-hidden relative">
                 <img 
                   src={resizedDataUrl || previewUrl} 
                   alt="Preview" 
@@ -152,7 +152,7 @@ export default function ResizeImagePage() {
               </div>
               
               {resizedDataUrl && (
-                <div className="mt-4 p-3 bg-green-500/10 border border-green-500/20 rounded-lg flex items-center justify-between text-green-400 text-sm">
+                <div className="mt-4 p-3 bg-green-50 border border-green-200 rounded-lg flex items-center justify-between text-green-700 text-sm font-medium">
                   <span>Image successfully resized!</span>
                 </div>
               )}
@@ -169,18 +169,18 @@ export default function ResizeImagePage() {
         </div>
 
         {/* Right Column: Settings */}
-        <div className="bg-card border border-border rounded-2xl p-6 shadow-xl relative">
-          <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
+        <div className="bg-white border border-border rounded-2xl p-6 shadow-sm relative">
+          <h3 className="text-xl font-semibold mb-6 flex items-center gap-2 text-gray-900">
             Resize Settings
           </h3>
 
           <div className="space-y-6 opacity-100 transition-opacity" style={{ opacity: previewUrl ? 1 : 0.5, pointerEvents: previewUrl ? 'auto' : 'none' }}>
             
             {/* Dimensions Info */}
-            <div className="flex gap-4 p-4 bg-black/20 rounded-xl border border-border/50">
+            <div className="flex gap-4 p-4 bg-gray-50 rounded-xl border border-gray-200">
               <div className="flex-1">
                 <div className="text-xs text-muted mb-1">Original Size</div>
-                <div className="font-medium text-lg">{originalWidth} &times; {originalHeight}</div>
+                <div className="font-medium text-lg text-gray-900">{originalWidth} &times; {originalHeight}</div>
               </div>
             </div>
 
@@ -188,21 +188,21 @@ export default function ResizeImagePage() {
             <div className="space-y-4">
               <div className="grid grid-cols-2 gap-4 relative">
                 <div>
-                  <label className="block text-sm font-medium text-muted mb-1.5">Width (px)</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1.5">Width (px)</label>
                   <input 
                     type="number"
                     value={width || ''}
                     onChange={(e) => handleWidthChange(e.target.value)}
-                    className="w-full bg-black/30 border border-border rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all text-white"
+                    className="w-full bg-white border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all text-gray-900"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-muted mb-1.5">Height (px)</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1.5">Height (px)</label>
                   <input 
                     type="number"
                     value={height || ''}
                     onChange={(e) => handleHeightChange(e.target.value)}
-                    className="w-full bg-black/30 border border-border rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all text-white"
+                    className="w-full bg-white border border-gray-300 rounded-lg px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all text-gray-900"
                   />
                 </div>
                 
@@ -210,7 +210,7 @@ export default function ResizeImagePage() {
                 <div className="absolute left-1/2 top-[34px] -translate-x-1/2 flex items-center justify-center">
                   <button 
                     onClick={() => setMaintainRatio(!maintainRatio)}
-                    className={`p-1.5 rounded-full border ${maintainRatio ? 'bg-primary/20 border-primary/50 text-primary' : 'bg-card border-border text-muted'} hover:bg-primary/30 transition-colors z-10 shadow-lg`}
+                    className={`p-1.5 rounded-full border ${maintainRatio ? 'bg-primary/10 border-primary/30 text-primary' : 'bg-white border-gray-300 text-gray-500'} hover:bg-primary/10 transition-colors z-10 shadow-sm`}
                     title="Toggle Aspect Ratio"
                   >
                     {maintainRatio ? <Lock className="w-4 h-4" /> : <Unlock className="w-4 h-4" />}
@@ -220,12 +220,12 @@ export default function ResizeImagePage() {
             </div>
 
             {/* Actions */}
-            <div className="pt-6 mt-6 border-t border-border/50">
+            <div className="pt-6 mt-6 border-t border-gray-200">
               {!resizedDataUrl ? (
                 <button
                   onClick={handleResize}
                   disabled={!previewUrl || isResizing}
-                  className="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-3.5 rounded-xl transition-all shadow-[0_0_15px_rgba(99,102,241,0.3)] hover:shadow-[0_0_25px_rgba(99,102,241,0.5)] flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-3.5 rounded-xl transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isResizing ? (
                     <RefreshCw className="w-5 h-5 animate-spin" />
@@ -242,14 +242,14 @@ export default function ResizeImagePage() {
                       setWidth(originalWidth);
                       setHeight(originalHeight);
                     }}
-                    className="bg-card hover:bg-white/5 border border-border text-white font-semibold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2"
+                    className="bg-white hover:bg-gray-50 border border-gray-300 text-gray-700 font-semibold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2"
                   >
                     <RefreshCw className="w-5 h-5" />
                     Reset
                   </button>
                   <button
                     onClick={handleDownload}
-                    className="bg-green-600 hover:bg-green-500 text-white font-semibold py-3.5 rounded-xl transition-all shadow-[0_0_15px_rgba(22,163,74,0.3)] hover:shadow-[0_0_25px_rgba(22,163,74,0.5)] flex items-center justify-center gap-2"
+                    className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3.5 rounded-xl transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2"
                   >
                     <Download className="w-5 h-5" />
                     Download

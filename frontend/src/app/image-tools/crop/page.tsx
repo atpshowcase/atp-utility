@@ -148,16 +148,16 @@ export default function ImageCropPage() {
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_350px] gap-8">
         
         {/* Left Column: Upload & Crop Area */}
-        <div className="bg-card border border-border rounded-2xl p-6 shadow-xl backdrop-blur-sm relative overflow-hidden flex flex-col min-h-[500px]">
+        <div className="bg-white border border-border rounded-2xl p-6 shadow-sm relative overflow-hidden flex flex-col min-h-[500px]">
           {!previewUrl ? (
             <div 
-              className="flex-1 flex flex-col items-center justify-center border-2 border-dashed border-border rounded-xl cursor-pointer hover:bg-white/5 hover:border-primary/50 transition-all group"
+              className="flex-1 flex flex-col items-center justify-center border-2 border-dashed border-gray-300 bg-gray-50 rounded-xl cursor-pointer hover:bg-gray-100 hover:border-primary/50 transition-all group"
               onClick={() => fileInputRef.current?.click()}
             >
-              <div className="bg-primary/20 p-4 rounded-full mb-4 group-hover:scale-110 transition-transform">
+              <div className="bg-primary/10 p-4 rounded-full mb-4 group-hover:scale-110 transition-transform">
                 <UploadCloud className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Click or drag image here</h3>
+              <h3 className="text-lg font-semibold mb-2 text-gray-900">Click or drag image here</h3>
               <p className="text-muted text-sm text-center max-w-[250px]">
                 Supports JPG, PNG, WEBP, and more.
               </p>
@@ -165,7 +165,7 @@ export default function ImageCropPage() {
           ) : (
             <div className="flex-1 flex flex-col h-full">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="font-semibold flex items-center gap-2">
+                <h3 className="font-semibold flex items-center gap-2 text-gray-900">
                   <CropIcon className="w-5 h-5 text-primary" />
                   {croppedDataUrl ? "Cropped Result" : "Crop Area"}
                 </h3>
@@ -175,13 +175,13 @@ export default function ImageCropPage() {
                     setPreviewUrl(null);
                     setCroppedDataUrl(null);
                   }}
-                  className="text-xs text-muted hover:text-white transition-colors bg-white/5 px-3 py-1.5 rounded-full"
+                  className="text-xs text-muted hover:text-gray-900 transition-colors bg-gray-100 border border-gray-200 px-3 py-1.5 rounded-full"
                 >
                   Change Image
                 </button>
               </div>
               
-              <div className="flex-1 bg-black/40 rounded-xl flex items-center justify-center p-4 border border-border/50 overflow-hidden relative min-h-[400px]">
+              <div className="flex-1 bg-gray-100 rounded-xl flex items-center justify-center p-4 border border-gray-200 overflow-hidden relative min-h-[400px]">
                 {!croppedDataUrl ? (
                   <ReactCrop
                     crop={crop}
@@ -203,7 +203,7 @@ export default function ImageCropPage() {
                   <img 
                     src={croppedDataUrl} 
                     alt="Cropped result" 
-                    className="max-w-full max-h-[60vh] object-contain rounded-md border border-border/50 shadow-2xl"
+                    className="max-w-full max-h-[60vh] object-contain rounded-md border border-gray-300 shadow-md"
                   />
                 )}
               </div>
@@ -220,8 +220,8 @@ export default function ImageCropPage() {
         </div>
 
         {/* Right Column: Settings */}
-        <div className="bg-card border border-border rounded-2xl p-6 shadow-xl relative h-fit sticky top-6">
-          <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
+        <div className="bg-white border border-border rounded-2xl p-6 shadow-sm relative h-fit sticky top-6">
+          <h3 className="text-xl font-semibold mb-6 flex items-center gap-2 text-gray-900">
             Crop Options
           </h3>
 
@@ -229,35 +229,35 @@ export default function ImageCropPage() {
             
             {/* Aspect Ratio Buttons */}
             <div className="space-y-3">
-              <label className="text-sm font-medium text-muted block">Aspect Ratio</label>
+              <label className="text-sm font-medium text-gray-700 block">Aspect Ratio</label>
               <div className="grid grid-cols-2 gap-2">
                 <button 
                   onClick={() => handleAspectChange(undefined)}
-                  className={`py-2 px-3 rounded-lg text-sm font-medium border transition-colors ${!aspect ? 'bg-primary/20 border-primary text-primary' : 'bg-black/30 border-border text-muted hover:bg-white/5'}`}
+                  className={`py-2 px-3 rounded-lg text-sm font-medium border transition-colors ${!aspect ? 'bg-primary/10 border-primary text-primary' : 'bg-white border-gray-300 text-gray-600 hover:bg-gray-50'}`}
                 >
                   Freeform
                 </button>
                 <button 
                   onClick={() => handleAspectChange(1)}
-                  className={`py-2 px-3 rounded-lg text-sm font-medium border transition-colors ${aspect === 1 ? 'bg-primary/20 border-primary text-primary' : 'bg-black/30 border-border text-muted hover:bg-white/5'}`}
+                  className={`py-2 px-3 rounded-lg text-sm font-medium border transition-colors ${aspect === 1 ? 'bg-primary/10 border-primary text-primary' : 'bg-white border-gray-300 text-gray-600 hover:bg-gray-50'}`}
                 >
                   1:1 (Square)
                 </button>
                 <button 
                   onClick={() => handleAspectChange(16 / 9)}
-                  className={`py-2 px-3 rounded-lg text-sm font-medium border transition-colors ${aspect === 16/9 ? 'bg-primary/20 border-primary text-primary' : 'bg-black/30 border-border text-muted hover:bg-white/5'}`}
+                  className={`py-2 px-3 rounded-lg text-sm font-medium border transition-colors ${aspect === 16/9 ? 'bg-primary/10 border-primary text-primary' : 'bg-white border-gray-300 text-gray-600 hover:bg-gray-50'}`}
                 >
                   16:9 (Landscape)
                 </button>
                 <button 
                   onClick={() => handleAspectChange(4 / 3)}
-                  className={`py-2 px-3 rounded-lg text-sm font-medium border transition-colors ${aspect === 4/3 ? 'bg-primary/20 border-primary text-primary' : 'bg-black/30 border-border text-muted hover:bg-white/5'}`}
+                  className={`py-2 px-3 rounded-lg text-sm font-medium border transition-colors ${aspect === 4/3 ? 'bg-primary/10 border-primary text-primary' : 'bg-white border-gray-300 text-gray-600 hover:bg-gray-50'}`}
                 >
                   4:3 (Standard)
                 </button>
                 <button 
                   onClick={() => handleAspectChange(9 / 16)}
-                  className={`py-2 px-3 rounded-lg text-sm font-medium border transition-colors ${aspect === 9/16 ? 'bg-primary/20 border-primary text-primary' : 'bg-black/30 border-border text-muted hover:bg-white/5'}`}
+                  className={`py-2 px-3 rounded-lg text-sm font-medium border transition-colors ${aspect === 9/16 ? 'bg-primary/10 border-primary text-primary' : 'bg-white border-gray-300 text-gray-600 hover:bg-gray-50'}`}
                 >
                   9:16 (Story)
                 </button>
@@ -265,12 +265,12 @@ export default function ImageCropPage() {
             </div>
 
             {/* Actions */}
-            <div className="pt-6 mt-6 border-t border-border/50">
+            <div className="pt-6 mt-6 border-t border-gray-200">
               {!croppedDataUrl ? (
                 <button
                   onClick={handleCrop}
                   disabled={!previewUrl || !completedCrop || isCropping}
-                  className="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-3.5 rounded-xl transition-all shadow-[0_0_15px_rgba(99,102,241,0.3)] hover:shadow-[0_0_25px_rgba(99,102,241,0.5)] flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-3.5 rounded-xl transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isCropping ? (
                     <RefreshCw className="w-5 h-5 animate-spin" />
@@ -283,14 +283,14 @@ export default function ImageCropPage() {
                 <div className="grid grid-cols-2 gap-3">
                   <button
                     onClick={() => setCroppedDataUrl(null)}
-                    className="bg-card hover:bg-white/5 border border-border text-white font-semibold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2"
+                    className="bg-white hover:bg-gray-50 border border-gray-300 text-gray-700 font-semibold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2"
                   >
                     <RefreshCw className="w-5 h-5" />
                     Reset
                   </button>
                   <button
                     onClick={handleDownload}
-                    className="bg-green-600 hover:bg-green-500 text-white font-semibold py-3.5 rounded-xl transition-all shadow-[0_0_15px_rgba(22,163,74,0.3)] hover:shadow-[0_0_25px_rgba(22,163,74,0.5)] flex items-center justify-center gap-2"
+                    className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3.5 rounded-xl transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2"
                   >
                     <Download className="w-5 h-5" />
                     Download

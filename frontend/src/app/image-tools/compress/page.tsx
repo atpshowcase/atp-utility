@@ -124,16 +124,16 @@ export default function CompressImagePage() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         
         {/* Left Column: Upload & Preview */}
-        <div className="bg-card border border-border rounded-2xl p-6 shadow-xl backdrop-blur-sm relative overflow-hidden flex flex-col h-full min-h-[400px]">
+        <div className="bg-white border border-border rounded-2xl p-6 shadow-sm relative overflow-hidden flex flex-col h-full min-h-[400px]">
           {!previewUrl ? (
             <div 
-              className="flex-1 flex flex-col items-center justify-center border-2 border-dashed border-border rounded-xl cursor-pointer hover:bg-white/5 hover:border-primary/50 transition-all group"
+              className="flex-1 flex flex-col items-center justify-center border-2 border-dashed border-gray-300 bg-gray-50 rounded-xl cursor-pointer hover:bg-gray-100 hover:border-primary/50 transition-all group"
               onClick={triggerFileInput}
             >
-              <div className="bg-primary/20 p-4 rounded-full mb-4 group-hover:scale-110 transition-transform">
+              <div className="bg-primary/10 p-4 rounded-full mb-4 group-hover:scale-110 transition-transform">
                 <UploadCloud className="w-8 h-8 text-primary" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">Click or drag image here</h3>
+              <h3 className="text-lg font-semibold mb-2 text-gray-900">Click or drag image here</h3>
               <p className="text-muted text-sm text-center max-w-[250px]">
                 Supports JPG, PNG, WEBP, and more.
               </p>
@@ -141,7 +141,7 @@ export default function CompressImagePage() {
           ) : (
             <div className="flex-1 flex flex-col h-full">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="font-semibold flex items-center gap-2">
+                <h3 className="font-semibold flex items-center gap-2 text-gray-900">
                   <ImageIcon className="w-5 h-5 text-primary" />
                   Image Preview
                 </h3>
@@ -152,13 +152,13 @@ export default function CompressImagePage() {
                     setCompressedDataUrl(null);
                     setCompressedBlob(null);
                   }}
-                  className="text-xs text-muted hover:text-white transition-colors bg-white/5 px-3 py-1.5 rounded-full"
+                  className="text-xs text-muted hover:text-gray-900 transition-colors bg-gray-100 border border-gray-200 px-3 py-1.5 rounded-full"
                 >
                   Change Image
                 </button>
               </div>
               
-              <div className="flex-1 bg-black/20 rounded-xl flex items-center justify-center p-4 border border-border/50 overflow-hidden relative min-h-[250px]">
+              <div className="flex-1 bg-gray-100 rounded-xl flex items-center justify-center p-4 border border-gray-200 overflow-hidden relative min-h-[250px]">
                 <img 
                   src={compressedDataUrl || previewUrl} 
                   alt="Preview" 
@@ -167,7 +167,7 @@ export default function CompressImagePage() {
               </div>
               
               {compressedSize !== null && (
-                <div className="mt-4 p-3 bg-green-500/10 border border-green-500/20 rounded-lg flex flex-col gap-1 text-green-400 text-sm">
+                <div className="mt-4 p-3 bg-green-50 border border-green-200 rounded-lg flex flex-col gap-1 text-green-700 text-sm">
                   <div className="flex items-center justify-between font-semibold">
                     <span>Compression Complete!</span>
                     <span>Saved {Math.round((1 - compressedSize / originalSize) * 100)}%</span>
@@ -187,23 +187,23 @@ export default function CompressImagePage() {
         </div>
 
         {/* Right Column: Settings */}
-        <div className="bg-card border border-border rounded-2xl p-6 shadow-xl relative">
-          <h3 className="text-xl font-semibold mb-6 flex items-center gap-2">
+        <div className="bg-white border border-border rounded-2xl p-6 shadow-sm relative">
+          <h3 className="text-xl font-semibold mb-6 flex items-center gap-2 text-gray-900">
             Compression Settings
           </h3>
 
           <div className="space-y-6 opacity-100 transition-opacity" style={{ opacity: previewUrl ? 1 : 0.5, pointerEvents: previewUrl ? 'auto' : 'none' }}>
             
             {/* File Size Comparison Info */}
-            <div className="flex gap-4 p-4 bg-black/20 rounded-xl border border-border/50">
+            <div className="flex gap-4 p-4 bg-gray-50 rounded-xl border border-gray-200">
               <div className="flex-1">
                 <div className="text-xs text-muted mb-1">Original Size</div>
-                <div className="font-medium text-lg">{formatBytes(originalSize)}</div>
+                <div className="font-medium text-lg text-gray-900">{formatBytes(originalSize)}</div>
               </div>
-              <div className="w-px bg-border/50"></div>
+              <div className="w-px bg-gray-300"></div>
               <div className="flex-1">
                 <div className="text-xs text-muted mb-1">Compressed Size</div>
-                <div className={`font-medium text-lg ${compressedSize ? 'text-green-400' : 'text-muted'}`}>
+                <div className={`font-medium text-lg ${compressedSize ? 'text-green-600' : 'text-gray-400'}`}>
                   {compressedSize ? formatBytes(compressedSize) : '---'}
                 </div>
               </div>
@@ -212,7 +212,7 @@ export default function CompressImagePage() {
             {/* Quality Slider */}
             <div className="space-y-4">
               <div className="flex justify-between items-center">
-                <label className="text-sm font-medium text-muted">Quality Level</label>
+                <label className="text-sm font-medium text-gray-700">Quality Level</label>
                 <span className="text-sm font-semibold text-primary">{Math.round(quality * 100)}%</span>
               </div>
               <input 
@@ -222,7 +222,7 @@ export default function CompressImagePage() {
                 step="0.05"
                 value={quality}
                 onChange={(e) => setQuality(parseFloat(e.target.value))}
-                className="w-full accent-primary h-2 bg-black/30 rounded-lg appearance-none cursor-pointer"
+                className="w-full accent-primary h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
               />
               <div className="flex justify-between text-xs text-muted">
                 <span>Smaller File</span>
@@ -231,12 +231,12 @@ export default function CompressImagePage() {
             </div>
 
             {/* Actions */}
-            <div className="pt-6 mt-6 border-t border-border/50">
+            <div className="pt-6 mt-6 border-t border-gray-200">
               {!compressedDataUrl ? (
                 <button
                   onClick={handleCompress}
                   disabled={!previewUrl || isCompressing}
-                  className="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-3.5 rounded-xl transition-all shadow-[0_0_15px_rgba(99,102,241,0.3)] hover:shadow-[0_0_25px_rgba(99,102,241,0.5)] flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-primary hover:bg-primary/90 text-white font-semibold py-3.5 rounded-xl transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isCompressing ? (
                     <RefreshCw className="w-5 h-5 animate-spin" />
@@ -253,14 +253,14 @@ export default function CompressImagePage() {
                       setCompressedBlob(null);
                       setCompressedSize(null);
                     }}
-                    className="bg-card hover:bg-white/5 border border-border text-white font-semibold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2"
+                    className="bg-white hover:bg-gray-50 border border-gray-300 text-gray-700 font-semibold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2"
                   >
                     <RefreshCw className="w-5 h-5" />
                     Adjust
                   </button>
                   <button
                     onClick={handleDownload}
-                    className="bg-green-600 hover:bg-green-500 text-white font-semibold py-3.5 rounded-xl transition-all shadow-[0_0_15px_rgba(22,163,74,0.3)] hover:shadow-[0_0_25px_rgba(22,163,74,0.5)] flex items-center justify-center gap-2"
+                    className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3.5 rounded-xl transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2"
                   >
                     <Download className="w-5 h-5" />
                     Download
